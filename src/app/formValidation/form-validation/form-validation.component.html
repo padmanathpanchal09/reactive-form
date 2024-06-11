@@ -1,0 +1,89 @@
+<form class="row g-3 needs-validation" [formGroup]="userForm" (submit)="submitForm()">
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">First name</label>
+      <input type="text" class="form-control" id="validationCustom01" formControlName="firstName" required>
+        @if ((userForm.controls['firstName'].touched || isFormSubmitted)  && userForm.controls['firstName'].invalid ) {
+            <div class="text-danger">
+                @if (userForm.controls['firstName'].errors?.['required']) {
+                    <span>First Name is required</span>
+                }
+              </div>
+        }
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="validationCustom02" formControlName="lastName" required>
+      @if ((userForm.controls['lastName'].touched || isFormSubmitted) && userForm.controls['lastName'].invalid )  {
+        <div class="text-danger">
+            @if (userForm.controls['lastName'].errors?.['required']) {
+                <span> Last Name is required</span>
+            }
+            @if (userForm.controls['lastName'].errors?.['minlength']) {
+                <span>Enter Min 4 Charactors</span>
+            }
+          </div>
+        }
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustomUsername" class="form-label">Username</label>
+      <div class="input-group has-validation">
+        <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+        <input type="text" class="form-control" id="validationCustomUsername" formControlName="username" aria-describedby="inputGroupPrepend" required >
+      </div> 
+      @if ((userForm.controls['username'].touched || isFormSubmitted) && userForm.controls['username'].invalid) {
+        <div class="text-danger">
+            @if (userForm.controls['username'].errors?.['required']) {
+                <span>Username is required</span>
+            }
+            @if (userForm.controls['username'].errors?.['email']) {
+                <span>pls provide valid email</span>
+            }
+            
+          </div>
+        }
+      
+    </div>
+    <div class="col-md-6">  
+      <label for="validationCustom03" class="form-label">City</label>
+      <input type="text" class="form-control" id="validationCustom03" formControlName="city" required>
+      @if ((userForm.controls['city'].touched  || isFormSubmitted )&& userForm.controls['city'].invalid) {
+        <div class="text-danger">
+            @if (userForm.controls['city'].errors?.['required']) {
+                <span>Please provide the city</span>
+            }
+          </div>
+        }
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">State</label>
+      <select class="form-select" id="validationCustom04" formControlName="state">
+        <option selected disabled value="">Choose...</option>
+        <option>MH</option>
+      </select>
+      <div class="text-danger">
+        @if (userForm.controls['state'].errors?.['touched']) {
+            <span>Please select a valid state.</span>
+        }
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom05" class="form-label">Zip</label>
+      <input type="text" class="form-control" formControlName="zipCode" id="validationCustom05">
+      <div class="text-danger">
+        @if (userForm.controls['zipCode'].errors?.['touched']) {
+            <span>Please provide a valid zip.</span>
+        }
+      </div>
+    </div>
+    <!-- <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <label class="form-check-label" for="invalidCheck">
+          Agree to terms and conditions
+        </label>
+      </div>
+    </div> -->
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+  </form>
